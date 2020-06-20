@@ -8,8 +8,10 @@ import 'package:stars/pages/activity_feed.dart';
 import 'package:stars/pages/comments.dart';
 import 'package:stars/pages/home.dart';
 import 'package:stars/pages/timeline.dart';
+import 'package:stars/widgets/chewie_list_item.dart';
 import 'package:stars/widgets/custom_image.dart';
 import 'package:stars/widgets/progress.dart';
+import 'package:video_player/video_player.dart';
 
 class Post extends StatefulWidget {
   final String postId;
@@ -166,7 +168,7 @@ class _PostState extends State<Post> {
       }
     });
     // delete uploaded image for thep ost
-    storageRef.child("post_$postId.jpg").delete();
+    storageRef.child("post_$postId.mp4").delete();
     // then delete all activity feed notifications
     QuerySnapshot activityFeedSnapshot = await activityFeedRef
         .document(ownerId)
@@ -269,10 +271,14 @@ class _PostState extends State<Post> {
         alignment: Alignment.center,
         children: <Widget>[
           cachedNetworkImage(mediaUrl),
-          showHeart ? Icon(Icons.favorite, size: 80.0, color: Colors.red,) : Text(""),
+          showHeart ? Icon(Icons.star, size: 80.0, color: Colors.yellow,) : Text(""),
         ],
       ),
     );
+  }
+
+  buildPostVideo() {
+    return ChewieListItem(videoPlayerController: VideoPlayerController.network(mediaUrl));
   }
 
   buildPostFooter() {
@@ -285,7 +291,7 @@ class _PostState extends State<Post> {
             GestureDetector(
               onTap: handleLikePost,
               child: Icon(
-                isLiked ? Icons.favorite : Icons.favorite_border,
+                isLiked ? Icons.star : Icons.star_border,
                 size: 28.0,
                 color: Colors.pink,
               ),
@@ -349,6 +355,7 @@ class _PostState extends State<Post> {
       children: <Widget>[
         buildPostHeader(),
         buildPostImage(),
+        buildPostVideo(),
         buildPostFooter()
       ],
     );

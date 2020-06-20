@@ -6,6 +6,7 @@ import 'package:stars/pages/search.dart';
 import 'package:stars/widgets/header.dart';
 import 'package:stars/widgets/post.dart';
 import 'package:stars/widgets/progress.dart';
+import 'package:video_player/video_player.dart';
 
 
 final usersRef = Firestore.instance.collection('users');
@@ -22,6 +23,7 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   List<Post> posts;
   List<String> followingList = [];
+  VideoPlayerController videoPlayerController;
 
   @override
   void initState() {

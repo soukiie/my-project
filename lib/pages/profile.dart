@@ -153,12 +153,12 @@ class _ProfileState extends State<Profile> {
       );
     } else if (isFollowing) {
       return buildButton(
-        text: "Unfollow",
+        text: "Unsupport",
         function: handleUnfollowUser,
       );
     } else if (!isFollowing) {
       return buildButton(
-        text: "Follow",
+        text: "Support",
         function: handleFollowUser,
       );
     }
@@ -295,6 +295,8 @@ class _ProfileState extends State<Profile> {
                   user.displayName,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+
                   ),
                 ),
               ),
@@ -335,22 +337,13 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       );
+    
     } else if (postOrientation == "grid") {
       List<GridTile> gridTiles = [];
       posts.forEach((post) {
         gridTiles.add(GridTile(child: PostTile(post)));
       });
-      return GridView.count(
-        crossAxisCount: 3,
-        childAspectRatio: 1.0,
-        mainAxisSpacing: 1.5,
-        crossAxisSpacing: 1.5,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        children: gridTiles,
-      );
-    } else if (postOrientation == "list") {
-      return Column(
+       return Column(
         children: posts,
       );
     }
@@ -368,15 +361,8 @@ class _ProfileState extends State<Profile> {
       children: <Widget>[
         IconButton(
           onPressed: () => setPostOrientation("grid"),
-          icon: Icon(Icons.grid_on),
+          icon: Icon(Icons.music_video),
           color: postOrientation == 'grid'
-              ? Theme.of(context).primaryColor
-              : Colors.grey,
-        ),
-        IconButton(
-          onPressed: () => setPostOrientation("list"),
-          icon: Icon(Icons.list),
-          color: postOrientation == 'list'
               ? Theme.of(context).primaryColor
               : Colors.grey,
         ),

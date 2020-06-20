@@ -71,14 +71,14 @@ class _EditProfileState extends State<EditProfile> {
         Padding(
             padding: EdgeInsets.only(top: 12.0),
             child: Text(
-              "Bio",
+              "Talent",
               style: TextStyle(color: Colors.grey),
             )),
         TextField(
           controller: bioController,
           decoration: InputDecoration(
-            hintText: "Update Bio",
-            errorText: _bioValid ? null : "Bio too long",
+            hintText: "Update your Talent details",
+            errorText: _bioValid ? null : "Details are too long",
           ),
         )
       ],
@@ -127,8 +127,8 @@ class _EditProfileState extends State<EditProfile> {
             onPressed: () => Navigator.pop(context),
             icon: Icon(
               Icons.done,
-              size: 30.0,
-              color: Colors.green,
+              size: 40.0,
+              color: Colors.blue[900],
             ),
           ),
         ],
@@ -175,7 +175,7 @@ class _EditProfileState extends State<EditProfile> {
                         padding: EdgeInsets.all(16.0),
                         child: FlatButton.icon(
                           onPressed: logout,
-                          icon: Icon(Icons.cancel, color: Colors.red),
+                          icon: Icon(Icons.directions_walk, color: Colors.black),
                           label: Text(
                             "Logout",
                             style: TextStyle(color: Colors.red, fontSize: 20.0),

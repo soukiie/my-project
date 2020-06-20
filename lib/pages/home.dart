@@ -11,6 +11,7 @@ import 'package:stars/pages/profile.dart';
 import 'package:stars/pages/search.dart';
 import 'package:stars/pages/timeline.dart';
 import 'package:stars/pages/upload.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final StorageReference storageRef = FirebaseStorage.instance.ref();
@@ -174,17 +175,22 @@ class _HomeState extends State<Home> {
         onPageChanged: onPageChanged,
         physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: CupertinoTabBar(
-        currentIndex: pageIndex,
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        index: 0,
+        height: 50.0,
+        items: <Widget>[
+          Icon(Icons.whatshot, size: 30),
+          Icon(Icons.notifications_active, size: 30),
+          Icon(Icons.photo_camera, size: 35.0,),
+          Icon(Icons.search, size: 30),
+          Icon(Icons.account_circle, size: 30),
+        ],
+        color: Colors.white,
+        buttonBackgroundColor: Colors.white,
+        animationCurve: Curves.easeInOut,
+        animationDuration: Duration(milliseconds: 600),
         onTap: onTap,
-        activeColor: Theme.of(context).primaryColor,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.whatshot),),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_active),),
-          BottomNavigationBarItem(icon: Icon(Icons.photo_camera, size: 35.0,),),
-          BottomNavigationBarItem(icon: Icon(Icons.search),),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle),),
-        ]
       ),
     );
     // return RaisedButton(

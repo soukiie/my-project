@@ -123,9 +123,9 @@ class ActivityFeedItem extends StatelessWidget {
     }
 
     if (type == 'like') {
-      activityItemText = "liked your post";
+      activityItemText = "encourage you";
     } else if (type == 'follow') {
-      activityItemText = "is following you";
+      activityItemText = "is supporting you";
     } else if (type == 'comment') {
       activityItemText = 'replied: $commentData';
     } else {
